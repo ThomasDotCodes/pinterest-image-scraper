@@ -21,7 +21,9 @@ pip install -U .
 cd ..
 python
 from pinterest_scraper import scraper as s
-ph = s.Pinterest_Helper(<Pinterst login> , <Pinterest password>)
+from selenium import webdriver
+chrome = webdriver.Chrome()
+ph = s.Pinterest_Helper("user@domain.com", "password", chrome)
 images = ph.runme("http://URL-to-image-board")
 ```
 
@@ -41,13 +43,5 @@ s.download(images, "/path/to/your/destination/dir")
 
 ```
 s.download(images)
-```
-
-Note: you no longer need Firefox.  If you'd like to use a different browser (i.e. Chrome or PhantomJS), you'll need to initialize it through selenium, then pass it through the Pinterest_Helper object.  For example, using Chrome:
-
-```
-from selenium import webdriver
-chrome = webdriver.Chrome()
-ph = s.Pinterest_Helper(<Pinterst login> , <Pinterest password>, chrome)
 ```
 
