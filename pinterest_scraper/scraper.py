@@ -18,6 +18,8 @@ def download(myinput, mydir = "./"):
         #https://stackoverflow.com/questions/18727347/how-to-extract-a-filename-from-a-url-append-a-word-to-it
         #outfile = mydir + "/" + os.path.basename(urlparse(myinput).path)
         outfile = mydir + "/" + os.path.basename(urlparse( str(myinput) ).path)
+        # remove tick from string (workaround)
+        outfile = outfile[:-1]
         playFile = open(outfile, 'wb')
         for chunk in res.iter_content(100000):
             playFile.write(chunk)
@@ -63,11 +65,9 @@ class Pinterest_Helper(object):
         passwordElem = self.browser.find_element_by_name('password')
         passwordElem.send_keys(pw)
         passwordElem.send_keys(Keys.RETURN)
-        #randdelay(2,4)
-        randdelay(1,3)
+        randdelay(2,4)
     
-    #def getURLs(self, urlcsv, threshold = 500):
-    def getURLs(self, urlcsv, threshold = 50):
+    def getURLs(self, urlcsv, threshold = 500):
         tmp = self.read(urlcsv)
         results = []
         for t in tmp:
@@ -88,8 +88,7 @@ class Pinterest_Helper(object):
         return tmp2        
         
     
-    #def runme(self,url, threshold = 500, persistence = 120, debug = False):
-    def runme(self,url, threshold = 50, persistence = 120, debug = False):
+    def runme(self,url, threshold = 500, persistence = 120, debug = False):
         final_results = []
         previmages = []
         tries = 0
@@ -131,8 +130,7 @@ class Pinterest_Helper(object):
             print("Exitting at end")
         return final_results
 
-    #def runme_alt(self,url, threshold = 500, tol = 10, minwait = 1, maxwait = 2,debug = False):
-    def runme_alt(self,url, threshold = 50, tol = 10, minwait = 1, maxwait = 2,debug = False):
+    def runme_alt(self,url, threshold = 500, tol = 10, minwait = 1, maxwait = 2,debug = False):
         final_results = []
         heights = []
         dwait = 0
